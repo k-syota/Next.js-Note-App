@@ -1,6 +1,11 @@
-import { Inter } from 'next/font/google'
+import { Noto_Sans_JP } from 'next/font/google'
 
-const inter = Inter({ subsets: ['latin'] })
+// 1. フォントの読み込み
+const NotoSansJP = Noto_Sans_JP({
+  weight: ["400", "700"],
+  subsets: ["latin"],
+  preload: true,
+});
 
 export const metadata = {
   title: 'Next.js Awesome Memo App',
@@ -14,7 +19,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ja">
-      <body className={inter.className}>{children}</body>
+      <body className={NotoSansJP.className}>{children}</body>
     </html>
   )
 }
