@@ -1,9 +1,17 @@
 import { z } from "zod";
-//  6. APIやDBから取得した値の形式を定義
-export const zVersion = z.string().regex(/^\d+\.\d+\.\d+$/);
-export const zSettings = z.object({
-  version: zVersion,
-  faq: z.string(),
-  tos: z.string(),
+
+export const zNote = z.object({
+  id: z.number().int(),
+  title: z.string(),
+  body: z.string(),
+  createdAt: z.string().datetime(),
+  updatedAt: z.string().datetime(),
 });
-export type Settings = z.infer<typeof zSettings>;
+export const zNotes = z.array(zNote);
+export const zUpsertNote = z.object({
+  title: z.string(),
+  body: z.string(),
+});
+
+export type Note = z.infer<typeof zNote>;
+export type Notes = z.infer<typeof zNotes>;
